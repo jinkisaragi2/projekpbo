@@ -55,10 +55,12 @@ public class Game extends PApplet{
         }
         p.setWalk(walk_1);
 
+        //ini
         idle = true;
         running = false;
         attacking_1 = false;
         attacking_2 = false;
+
     }
     
     
