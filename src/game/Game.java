@@ -17,7 +17,7 @@ public class Game extends PApplet{
     
     //FPS
     public static int FPS = 60;
-    
+
     //asset bg
     PImage rumah;
     PImage ladang;
@@ -54,6 +54,11 @@ public class Game extends PApplet{
             walk_1[i] = loadImage("src/assets/walk/" + (i+1) + ".png");
         }
         p.setWalk(walk_1);
+
+        idle = true;
+        running = false;
+        attacking_1 = false;
+        attacking_2 = false;
     }
     
     
