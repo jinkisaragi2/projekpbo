@@ -13,7 +13,7 @@ import processing.core.*;
 public class Game extends PApplet{
 
     public static final int WIDTH = 1280;
-    public static final int HEIGTH = 720;
+    public static final int HEIGHT = 720;
     
     //FPS
     public static int FPS = 60;
@@ -34,16 +34,15 @@ public class Game extends PApplet{
     boolean left, right, up, down;
     
     int c = 0;
-    
-    
+
     public void settings(){
-        size(WIDTH, HEIGTH);
+        size(WIDTH, HEIGHT);
     }
     
     public void setup(){
         frameRate(FPS);
-        rumah = loadImage("src/assets/interior/in1.png");
-        p = new Player(300,200);
+        rumah = loadImage("src/assets/interior/in3.png");
+        p = new Player(800,200);
         idle_1 = new PImage[5];
         walk_1 = new PImage[2];
         for (int i = 0; i < 5; i++) {
@@ -62,8 +61,7 @@ public class Game extends PApplet{
         attacking_2 = false;
 
     }
-    
-    
+
     public void keyPressed(){
         if(key=='w'){ up = true; running = true; idle = false;}
         if(key=='s'){ down = true; running = true; idle = false;}
