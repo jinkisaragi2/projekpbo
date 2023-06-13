@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package game;
 
 import processing.core.*;
 
-/**
- *
- * @author Melvin
- */
+
 public class Game extends PApplet{
 
     public static final int WIDTH = 1280;
@@ -54,11 +48,15 @@ public class Game extends PApplet{
         }
         p.setWalk(walk_1);
 
+        ladang = loadImage("src/assets/background/background_2.png");
+
         //ini
         idle = true;
         running = false;
         attacking_1 = false;
         attacking_2 = false;
+
+
 
     }
 
@@ -88,12 +86,29 @@ public class Game extends PApplet{
         else if (running){
             p.drawWalk(this, c);
         }
-        
+            // ...
+            if (key == 'd') {
+                if (p.getX() > (WIDTH / 2) && p.getX() > 100 && p.getY() < 400) {
+                    // Perform the warp action
+                    p.setX(WIDTH - 1);  // Set the player's X position to the rightmost edge of the screen
+                    p.setY(HEIGHT / 2);  // Set the player's Y position to the middle of the screen
+
+                    // Switch to the ladang map
+                    background(ladang);  // Set the ladang map as the background
+
+                    // Draw the player on the ladang map
+                    p.drawIdle(this, c);  // Draw the player's idle state on the ladang map
+
+                }
+            }
         c++;
+
     }
     
     public static void main(String[] args) {
+
         PApplet.main("game.Game");
+
     }
     
 }

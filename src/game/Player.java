@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package game;
 
 import processing.core.PApplet;
 import processing.core.PImage;
 
-/**
- *
- * @author Melvin
- */
+
 public class Player {
     public PImage[] idle;
     
@@ -102,6 +96,28 @@ public class Player {
     public void setWalk(PImage[] walk) {
         this.walk = walk;
     }
-    
-    
+
+
+    public void x() {
+    }
+
+    public void y() {
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setX(int newX) {
+        x = newX;
+    }
+
+    public void setY(int newY) {
+        y = newY;
+    }
+
 }
