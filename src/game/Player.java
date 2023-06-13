@@ -118,5 +118,26 @@ public class Player {
         Rectangle playerBoundary = new Rectangle(x, y, Game.WIDTH, HEIGHT);
         return playerBoundary.intersects(otherBoundary);
     }
+    public Rectangle getBoundary() {
+        return new Rectangle(x, y, Game.WIDTH, HEIGHT);
+    }
 
+    public void stopMoving() {
+    }
+
+    public int getWidth() {
+        return x;
+    }
+
+    public void setWidth(int width) {
+        this.x = width;
+    }
+
+    public int getHeight() {
+        return y;
+    }
+
+    public void setHeight(int height) {
+        this.y = height;
+    }
 }

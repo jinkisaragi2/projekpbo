@@ -13,7 +13,12 @@ public class Game extends PApplet{
     
     //FPS
     public static int FPS = 60;
-
+//buat coll
+Rectangle playerBoundary;
+    int wallX = WIDTH;
+    int wallY = HEIGHT;
+    int wallWidth = wallX;
+    int wallHeight = wallY;
     //asset bg
     PImage rumah;
     PImage ladang;
@@ -38,6 +43,12 @@ public class Game extends PApplet{
     
     public void setup(){
         frameRate(FPS);
+
+        registerMethod("keyPressed", this);
+        registerMethod("keyReleased", this);
+        //coll
+        Rectangle wallBoundary = new Rectangle(wallX, wallY, wallWidth, wallHeight);
+
         rumah = loadImage("src/assets/interior/in3.png");
         p = new Player(800,200);
         idle_1 = new PImage[4];
@@ -110,7 +121,6 @@ public class Game extends PApplet{
         background(rumah);
         p.update(left, right, up, down);
 
-        // Check for collisions with enemies
 
 
         // Draw the player
@@ -139,8 +149,14 @@ public class Game extends PApplet{
 //            }
     }
 
+    private boolean collideRectRect(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
+        return x1 < x2 + w2 &&
+                x1 + w1 > x2 &&
+                y1 < y2 + h2 &&
+                y1 + h1 > y2;
+    }
 
-    
+
     public static void main(String[] args) {
 
         PApplet.main("game.Game");
