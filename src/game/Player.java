@@ -28,16 +28,7 @@ public class Player {
     
     public void drawIdle(PApplet app, int f){
         int t = 0;
-        if (f == -1){
-            t = 0;
-            f = 0;
-        }
-        if (f%10 == 0){
-            t++;
-        }
-        if (t>4){
-            t = 0;
-        }
+        t = f;
         app.image(idle[t], x, y);
     }
     

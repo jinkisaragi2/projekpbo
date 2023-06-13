@@ -28,6 +28,7 @@ public class Game extends PApplet{
     boolean left, right, up, down;
     
     int c = 0;
+    int indikator = 0;
 
     public void settings(){
         size(WIDTH, HEIGHT);
@@ -37,14 +38,15 @@ public class Game extends PApplet{
         frameRate(FPS);
         rumah = loadImage("src/assets/interior/in3.png");
         p = new Player(800,200);
-        idle_1 = new PImage[5];
+        idle_1 = new PImage[4];
         walk_1 = new PImage[2];
-        for (int i = 0; i < 5; i++) {
-            idle_1[i] = loadImage("src/assets/avatar_b/avatar_b_depan_2.png");
-        }
+        idle_1[0] = loadImage("src/assets/avatar_b/avatar_b_belakang_2.png");
+        idle_1[1] = loadImage("src/assets/avatar_b/avatar_b_depan_2.png");
+        idle_1[2] = loadImage("src/assets/avatar_b/avatar_b_kiri_2.png");
+        idle_1[3] = loadImage("src/assets/avatar_b/avatar_b_kanan_2.png");
         p.setIdle(idle_1);
         for (int i = 0; i < 2; i++) {
-            walk_1[i] = loadImage("src/assets/walk/" + (i+1) + ".png");
+            walk_1[i] = loadImage("src/assets/walk/kanan_" + (i+1) + ".png");
         }
         p.setWalk(walk_1);
 
@@ -56,15 +58,17 @@ public class Game extends PApplet{
         attacking_1 = false;
         attacking_2 = false;
 
-
-
     }
 
     public void keyPressed(){
-        if(key=='w'){ up = true; running = true; idle = false;}
-        if(key=='s'){ down = true; running = true; idle = false;}
-        if(key=='a'){ left = true; running = true; idle = false;}
-        if(key=='d'){ right = true; running = true; idle = false;}
+        if(key=='w'){
+            indikator = 0; up = true; running = true; idle = false;}
+        if(key=='s'){
+            indikator = 1; down = true; running = true; idle = false;}
+        if(key=='a'){
+            indikator = 2; left = true; running = true; idle = false;}
+        if(key=='d'){
+            indikator = 3; right = true; running = true; idle = false;}
     }
     
     public void keyReleased(){
@@ -81,26 +85,26 @@ public class Game extends PApplet{
         background(rumah);
         p.update(left, right, up, down);
         if (idle){
-            p.drawIdle(this, c);
+            p.drawIdle(this, indikator);
         }
         else if (running){
             p.drawWalk(this, c);
         }
             // ...ini
-            if (key == 'd') {
-                if (p.getX() > (WIDTH / 2) && p.getX() > 100 && p.getY() < 400) {
-                    // Perform the warp action
-                    p.setX(WIDTH - 1);  // Set the player's X position to the rightmost edge of the screen
-                    p.setY(HEIGHT / 2);  // Set the player's Y position to the middle of the screen
-
-                    // Switch to the ladang map
-                    background(ladang);  // Set the ladang map as the background
-
-                    // Draw the player on the ladang map
-                    p.drawIdle(this, c);  // Draw the player's idle state on the ladang map
-
-                }
-            }
+//            if (key == 'd') {
+//                if (p.getX() > (WIDTH / 2) && p.getX() > 100 && p.getY() < 400) {
+//                    // Perform the warp action
+//                    p.setX(WIDTH - 1);  // Set the player's X position to the rightmost edge of the screen
+//                    p.setY(HEIGHT / 2);  // Set the player's Y position to the middle of the screen
+//
+//                    // Switch to the ladang map
+//                    background(ladang);  // Set the ladang map as the background
+//
+//                    // Draw the player on the ladang map
+//                    p.drawIdle(this, c);  // Draw the player's idle state on the ladang map
+//
+//                }
+//            }
         c++;
 
     }
