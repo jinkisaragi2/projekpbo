@@ -3,6 +3,8 @@ package game;
 
 import processing.core.*;
 
+import java.awt.*;
+
 
 public class Game extends PApplet{
 
@@ -103,17 +105,24 @@ public class Game extends PApplet{
             right = false;
         }
     }
-    
-    public void draw(){
+
+    public void draw() {
         background(rumah);
         p.update(left, right, up, down);
-        if (idle){
+
+        // Check for collisions with enemies
+
+
+        // Draw the player
+        if (idle) {
             p.drawIdle(this, indikator);
-        }
-        else if (running){
+        } else if (running) {
             p.drawWalk(this, c);
         }
-            // ...ini
+
+        // Draw other game objects (enemies, obstacles, etc.)
+
+        c++;
 //            if (key == 'f') {
 //                if (p.getX() > (WIDTH / 2) && p.getX() > 100 && p.getY() < 400) {
 //                    // Perform the warp action
@@ -128,9 +137,9 @@ public class Game extends PApplet{
 //
 //                }
 //            }
-        c++;
-
     }
+
+
     
     public static void main(String[] args) {
 

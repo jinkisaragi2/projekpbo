@@ -1,8 +1,11 @@
 
 package game;
 
-import processing.core.PApplet;
-import processing.core.PImage;
+import processing.core.*;
+
+import java.awt.*;
+
+import static game.Game.HEIGHT;
 
 
 public class Player {
@@ -109,6 +112,11 @@ public class Player {
 
     public void setY(int newY) {
         y = newY;
+    }
+//ini
+    public boolean checkCollision(Rectangle otherBoundary) {
+        Rectangle playerBoundary = new Rectangle(x, y, Game.WIDTH, HEIGHT);
+        return playerBoundary.intersects(otherBoundary);
     }
 
 }
