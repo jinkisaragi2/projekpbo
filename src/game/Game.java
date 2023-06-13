@@ -45,9 +45,7 @@ public class Game extends PApplet{
         idle_1[2] = loadImage("src/assets/avatar_b/avatar_b_kiri_2.png");
         idle_1[3] = loadImage("src/assets/avatar_b/avatar_b_kanan_2.png");
         p.setIdle(idle_1);
-        for (int i = 0; i < 2; i++) {
-            walk_1[i] = loadImage("src/assets/walk/kanan_" + (i+1) + ".png");
-        }
+        keyPressed();
         p.setWalk(walk_1);
 
         ladang = loadImage("src/assets/background/background_2.png");
@@ -59,26 +57,51 @@ public class Game extends PApplet{
         attacking_2 = false;
 
     }
-
-    public void keyPressed(){
-        if(key=='w'){
-            indikator = 0; up = true; running = true; idle = false;}
-        if(key=='s'){
-            indikator = 1; down = true; running = true; idle = false;}
-        if(key=='a'){
-            indikator = 2; left = true; running = true; idle = false;}
-        if(key=='d'){
-            indikator = 3; right = true; running = true; idle = false;}
+//ini
+    public void keyPressed() {
+        if (key == 'w') {
+            indikator = 0; up = true; running = true; idle = false;
+            for (int i = 0; i < 2; i++) {
+                walk_1[i] = loadImage("src/assets/walk/belakang_" + (i+1) + ".png");
+            }
+            p.setWalk(walk_1);
+        }
+        if (key == 's') {
+            indikator = 1; down = true; running = true; idle = false;
+            for (int i = 0; i < 2; i++) {
+                walk_1[i] = loadImage("src/assets/walk/depan_" + (i+1) + ".png");
+            }
+            p.setWalk(walk_1);
+        }
+        if (key == 'a') {
+            indikator = 2; left = true; running = true; idle = false;
+            for (int i = 0; i < 2; i++) {
+                walk_1[i] = loadImage("src/assets/walk/kiri_" + (i+1) + ".png");
+            }
+            p.setWalk(walk_1);
+        }
+        if (key == 'd') {
+            indikator = 3; right = true; running = true; idle = false;
+            for (int i = 0; i < 2; i++) {
+                walk_1[i] = loadImage("src/assets/walk/kanan_" + (i+1) + ".png");
+            }
+            p.setWalk(walk_1);
+        }
     }
-    
-    public void keyReleased(){
+    public void keyReleased() {
         running = attacking_1 = false;
         idle = true;
         c = -1;
-        if(key=='w'){ up = false;}
-        if(key=='s'){ down = false;}
-        if(key=='a'){ left = false;}
-        if(key=='d'){ right = false;}
+
+        if (key == 'w') {
+            up = false;
+        } else if (key == 's') {
+            down = false;
+        } else if (key == 'a') {
+            left = false;
+        } else if (key == 'd') {
+            right = false;
+        }
     }
     
     public void draw(){
@@ -91,7 +114,7 @@ public class Game extends PApplet{
             p.drawWalk(this, c);
         }
             // ...ini
-//            if (key == 'd') {
+//            if (key == 'f') {
 //                if (p.getX() > (WIDTH / 2) && p.getX() > 100 && p.getY() < 400) {
 //                    // Perform the warp action
 //                    p.setX(WIDTH - 1);  // Set the player's X position to the rightmost edge of the screen
