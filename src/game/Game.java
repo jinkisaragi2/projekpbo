@@ -86,7 +86,7 @@ public class Game extends PApplet{
         else if (running){
             p.drawWalk(this, c);
         }
-            // ...
+            // ...ini
             if (key == 'd') {
                 if (p.getX() > (WIDTH / 2) && p.getX() > 100 && p.getY() < 400) {
                     // Perform the warp action
