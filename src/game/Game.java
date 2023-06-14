@@ -100,6 +100,20 @@ Rectangle playerBoundary;
         if (key == 'f') {
             pindahMap();
         }
+        
+        // Cek kolisi dengan batas peta
+        if (left && p.getX() <= 0) {
+            left = false;
+        }
+        if (right && p.getX() + p.getWidth() >= WIDTH) {
+            right = false;
+        }
+        if (up && p.getY() <= 0) {
+            up = false;
+        }
+        if (down && p.getY() + p.getHeight() >= HEIGHT) {
+            down = false;
+        }
     }
     public void keyReleased() {
         running = attacking_1 = false;
