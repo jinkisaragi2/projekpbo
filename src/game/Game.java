@@ -105,13 +105,13 @@ Rectangle playerBoundary;
         if (left && p.getX() <= 0) {
             left = false;
         }
-        if (right && p.getX() + p.getWidth() >= WIDTH) {
+        if (right && p.getX()>= WIDTH) {
             right = false;
         }
         if (up && p.getY() <= 0) {
             up = false;
         }
-        if (down && p.getY() + p.getHeight() >= HEIGHT) {
+        if (down && p.getY()>= HEIGHT) {
             down = false;
         }
     }
