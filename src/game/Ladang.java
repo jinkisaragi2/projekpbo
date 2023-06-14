@@ -145,6 +145,7 @@ public class Ladang extends PApplet {
         if (idle) {
             e.drawIdle(this, indikator);
         }
+        c++;
     }
 
     public void change(){
