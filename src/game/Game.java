@@ -21,7 +21,6 @@ Rectangle playerBoundary;
     int wallHeight = wallY;
     //asset bg
     PImage rumah;
-    PImage ladang;
     
     //player
     Player p ;
@@ -61,8 +60,6 @@ Rectangle playerBoundary;
         keyPressed();
         p.setWalk(walk_1);
 
-        ladang = loadImage("src/assets/background/background_2.png");
-
         //ini
         idle = true;
         running = false;
@@ -100,6 +97,9 @@ Rectangle playerBoundary;
             }
             p.setWalk(walk_1);
         }
+        if (key == 'f') {
+            pindahMap();
+        }
     }
     public void keyReleased() {
         running = attacking_1 = false;
@@ -133,20 +133,6 @@ Rectangle playerBoundary;
         // Draw other game objects (enemies, obstacles, etc.)
 
         c++;
-//            if (key == 'f') {
-//                if (p.getX() > (WIDTH / 2) && p.getX() > 100 && p.getY() < 400) {
-//                    // Perform the warp action
-//                    p.setX(WIDTH - 1);  // Set the player's X position to the rightmost edge of the screen
-//                    p.setY(HEIGHT / 2);  // Set the player's Y position to the middle of the screen
-//
-//                    // Switch to the ladang map
-//                    background(ladang);  // Set the ladang map as the background
-//
-//                    // Draw the player on the ladang map
-//                    p.drawIdle(this, c);  // Draw the player's idle state on the ladang map
-//
-//                }
-//            }
     }
 
     private boolean collideRectRect(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
@@ -156,6 +142,10 @@ Rectangle playerBoundary;
                 y1 + h1 > y2;
     }
 
+    public void pindahMap(){
+        String[] args = {"pindahMap"};
+        PApplet.runSketch(args, new Ladang());
+    }
 
     public static void main(String[] args) {
 
