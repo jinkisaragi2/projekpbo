@@ -142,9 +142,14 @@ Rectangle playerBoundary;
                 y1 + h1 > y2;
     }
 
+    public void change(){
+        surface.setVisible(false);
+    }
+
     public void pindahMap(){
         String[] args = {"pindahMap"};
         PApplet.runSketch(args, new Ladang());
+        change();
     }
 
     public static void main(String[] args) {

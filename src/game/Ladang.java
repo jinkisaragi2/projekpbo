@@ -147,9 +147,14 @@ public class Ladang extends PApplet {
         }
     }
 
+    public void change(){
+        surface.setVisible(false);
+    }
+
     public void pindahMap(){
         String[] args = {"pindahMap"};
         PApplet.runSketch(args, new Game());
+        change();
     }
 
     private boolean collideRectRect(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
