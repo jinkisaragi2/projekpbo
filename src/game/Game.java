@@ -271,7 +271,7 @@ public class Game extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main("game.Game");
+        PApplet.main("game.Menu");
 
 //        PApplet.main("game.Game");
     }
