@@ -51,7 +51,7 @@ public class Ladang extends PApplet {
         registerMethod("keyPressed", this);
         registerMethod("keyReleased", this);
         //coll
-        Rectangle wallBoundary = new Rectangle(wallX, wallY, wallWidth, wallHeight);
+//        Rectangle wallBoundary = new Rectangle(wallX, wallY, wallWidth, wallHeight);
 
         ladang = loadImage("src/assets/background/background_2.png");
         p = new Player(425,30);
