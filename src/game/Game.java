@@ -154,10 +154,10 @@ public class Game extends PApplet {
 
             for (Wall warp : warps){
                 Rectangle warpRect = new Rectangle(warp.getX(), warp.getY(), warp.getWidth(), warp.getHeight());
-                if (pindah==false){
+                if (pindah == false){
                     if (playerRect.intersects(warpRect)){
                         pindahMap();
-                        pindah=true;
+                        pindah = true;
                         System.out.println("tunjungan plaza");
                         return;
                     }
@@ -187,9 +187,6 @@ public class Game extends PApplet {
             }
             if (key == 'd') {
                 right = true;
-            }
-            if (key == 'f') {
-                pindahMap();
             }
         }
 
@@ -261,13 +258,6 @@ public class Game extends PApplet {
             textSize(48);
             text("Game Paused", width / 2, height / 2);
         }
-    }
-
-    private boolean collideRectRect(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
-        return x1 < x2 + w2
-                && x1 + w1 > x2
-                && y1 < y2 + h2
-                && y1 + h1 > y2;
     }
 
     public void change() {

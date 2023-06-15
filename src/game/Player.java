@@ -2,15 +2,15 @@ package game;
 
 import processing.core.*;
 
-import java.awt.*;
-
-import static game.Game.HEIGHT;
+import java.util.ArrayList;
 
 public class Player {
 
     public PImage[] idle;
 
     public PImage[] walk;
+    public PImage[] attack1;
+    public PImage[] attack2;
 
     public int x, y;
 
@@ -19,11 +19,13 @@ public class Player {
 
     int t = 0;
 
-    public Player(PImage[] idle, int x, int y, PImage[] walk) {
+    public Player(PImage[] idle, int x, int y, PImage[] walk, PImage[] attack1, PImage[] attack2) {
         this.idle = idle;
         this.x = x;
         this.y = y;
         this.walk = walk;
+        this.attack1 = attack1;
+        this.attack2 = attack2;
     }
 
     public Player(int x, int y) {
@@ -49,6 +51,51 @@ public class Player {
             t = 0;
         }
         app.image(walk[t], x, y);
+    }
+
+    boolean isCollision(Enemy e){
+        //Needs fixing, but will do for the demo.
+        if (this.x < e.x + 50 &&
+                this.x + 50 > e.x &&
+                this.y < e.y + 50 &&
+                50 + this.y > e.y) {
+
+            System.out.println("collision");
+            return true;
+        } else {
+            System.out.println(e.x+50);
+            System.out.println(e.y+50);
+            System.out.println(this.x);
+            System.out.println(this.y);
+            System.out.println("Ndak collide");
+            return false;
+        }
+    }
+
+    public boolean drawAttack1(PApplet app, int f, ArrayList<Enemy> e){
+        if(f==-1) {t=0; f = 0;}
+        if(f%10==0) t++;
+        if(t>5) {
+            t=0;
+            boolean collided = false;
+            for(Enemy enemy : e){
+                collided = isCollision(enemy);
+
+            }
+            if(collided){
+                System.out.println("Commence Battle");
+                return true;
+            }
+        }
+        app.image(attack1[t],x,y);
+        return false;
+    }
+
+    public void drawAttack2(PApplet app, int f){
+        if(f==-1) {t=0; f = 0;}
+        if(f%10==0) t++;
+        if(t==8) t=0;
+        app.image(walk[t],x,y);
     }
 
     public int vy, vx;
@@ -93,12 +140,6 @@ public class Player {
         this.walk = walk;
     }
 
-    public void x() {
-    }
-
-    public void y() {
-    }
-
     public int getX() {
         return x;
     }
@@ -113,19 +154,6 @@ public class Player {
 
     public void setY(int newY) {
         y = newY;
-    }
-//ini
-
-    public boolean checkCollision(Rectangle otherBoundary) {
-        Rectangle playerBoundary = new Rectangle(x, y, Game.WIDTH, HEIGHT);
-        return playerBoundary.intersects(otherBoundary);
-    }
-
-    public Rectangle getBoundary() {
-        return new Rectangle(x, y, Game.WIDTH, HEIGHT);
-    }
-
-    public void stopMoving() {
     }
 
     public int getWidth() {
