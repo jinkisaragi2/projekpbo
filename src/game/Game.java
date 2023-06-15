@@ -10,7 +10,7 @@ public class Game extends PApplet{
 
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
-    
+
     //FPS
     public static int FPS = 60;
 //buat coll
@@ -75,6 +75,10 @@ Rectangle playerBoundary;
                 walk_1[i] = loadImage("src/assets/walk/belakang_" + (i+1) + ".png");
             }
             p.setWalk(walk_1);
+
+            if (left && p.getX() <= 0) {
+            left = false;
+            }
         }
         if (key == 's') {
             indikator = 1; down = true; running = true; idle = false;
@@ -165,11 +169,9 @@ Rectangle playerBoundary;
         PApplet.runSketch(args, new Ladang());
         change();
     }
-
     public static void main(String[] args) {
+        PApplet.main("game.Menu");
 
-        PApplet.main("game.Game");
-
+//        PApplet.main("game.Game");
     }
-    
 }
