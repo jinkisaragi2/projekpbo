@@ -32,7 +32,10 @@ Rectangle playerBoundary;
     public PImage[] attack_2;
     boolean running, idle, attacking_1, attacking_2;
     boolean left, right, up, down;
-    
+
+    // Game state variables
+    boolean isPaused = false;
+
     int c = 0;
     int indikator = 0;
 
@@ -69,40 +72,52 @@ Rectangle playerBoundary;
     }
 //ini
     public void keyPressed() {
-        if (key == 'w') {
-            indikator = 0; up = true; running = true; idle = false;
-            for (int i = 0; i < 2; i++) {
-                walk_1[i] = loadImage("src/assets/walk/belakang_" + (i+1) + ".png");
-            }
-            p.setWalk(walk_1);
+        // Handle game controls when the game is not paused
+        if (!isPaused) {
+            // Handle player movement controls
 
-            if (left && p.getX() <= 0) {
-            left = false;
+
+            if (key == 'w') {
+                indikator = 0; up = true; running = true; idle = false;
+                for (int i = 0; i < 2; i++) {
+                    walk_1[i] = loadImage("src/assets/walk/belakang_" + (i+1) + ".png");
+                }
+                p.setWalk(walk_1);
+
+                if (left && p.getX() <= 0) {
+                    left = false;
+                }
+            }
+            if (key == 's') {
+                indikator = 1; down = true; running = true; idle = false;
+                for (int i = 0; i < 2; i++) {
+                    walk_1[i] = loadImage("src/assets/walk/depan_" + (i+1) + ".png");
+                }
+                p.setWalk(walk_1);
+            }
+            if (key == 'a') {
+                indikator = 2; left = true; running = true; idle = false;
+                for (int i = 0; i < 2; i++) {
+                    walk_1[i] = loadImage("src/assets/walk/kiri_" + (i+1) + ".png");
+                }
+                p.setWalk(walk_1);
+            }
+            if (key == 'd') {
+                indikator = 3; right = true; running = true; idle = false;
+                for (int i = 0; i < 2; i++) {
+                    walk_1[i] = loadImage("src/assets/walk/kanan_" + (i+1) + ".png");
+                }
+                p.setWalk(walk_1);
+            }
+            if (key == 'f') {
+                pindahMap();
             }
         }
-        if (key == 's') {
-            indikator = 1; down = true; running = true; idle = false;
-            for (int i = 0; i < 2; i++) {
-                walk_1[i] = loadImage("src/assets/walk/depan_" + (i+1) + ".png");
-            }
-            p.setWalk(walk_1);
-        }
-        if (key == 'a') {
-            indikator = 2; left = true; running = true; idle = false;
-            for (int i = 0; i < 2; i++) {
-                walk_1[i] = loadImage("src/assets/walk/kiri_" + (i+1) + ".png");
-            }
-            p.setWalk(walk_1);
-        }
-        if (key == 'd') {
-            indikator = 3; right = true; running = true; idle = false;
-            for (int i = 0; i < 2; i++) {
-                walk_1[i] = loadImage("src/assets/walk/kanan_" + (i+1) + ".png");
-            }
-            p.setWalk(walk_1);
-        }
-        if (key == 'f') {
-            pindahMap();
+
+        // Handle other game controls
+        if (key == 'p') {
+            // Pause or unpause the game when 'p' key is pressed
+            isPaused = !isPaused;
         }
         
         // Cek kolisi dengan batas peta
@@ -120,37 +135,50 @@ Rectangle playerBoundary;
         }
     }
     public void keyReleased() {
-        running = attacking_1 = false;
-        idle = true;
-        c = -1;
+        // Handle game controls when the game is not paused
+        if (!isPaused) {
+            // Handle player movement controls
+            if (key == 'w') {
+                up = false;
+            } else if (key == 's') {
+                down = false;
+            } else if (key == 'a') {
+                left = false;
+            } else if (key == 'd') {
+                right = false;
+            }
 
-        if (key == 'w') {
-            up = false;
-        } else if (key == 's') {
-            down = false;
-        } else if (key == 'a') {
-            left = false;
-        } else if (key == 'd') {
-            right = false;
+            running = attacking_1 = false;
+            idle = true;
+            c = -1;
+
         }
     }
 
     public void draw() {
-        background(rumah);
-        p.update(left, right, up, down);
+        if (!isPaused) {
+            // Update game logic and draw game objects only if the game is not paused
+            background(rumah);
+            p.update(left, right, up, down);
 
+            // Draw the player
+            if (idle) {
+                p.drawIdle(this, indikator);
+            } else if (running) {
+                p.drawWalk(this, c);
+            }
 
+            // Draw other game objects (enemies, obstacles, etc.)
 
-        // Draw the player
-        if (idle) {
-            p.drawIdle(this, indikator);
-        } else if (running) {
-            p.drawWalk(this, c);
+            c++;
+        } else {
+            // Display a pause message or screen when the game is paused
+            background(0);  // Black background
+            fill(255);  // White text color
+            textAlign(CENTER, CENTER);
+            textSize(48);
+            text("Game Paused", width / 2, height / 2);
         }
-
-        // Draw other game objects (enemies, obstacles, etc.)
-
-        c++;
     }
 
     private boolean collideRectRect(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
