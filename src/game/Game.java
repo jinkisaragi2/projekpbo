@@ -74,12 +74,15 @@ public class Game extends PApplet {
         //generate tembok
         walls = new ArrayList<>();
         walls.add(new Wall(0, 0, 250, 720));
-        walls.add(new Wall(0, 0, 1280, 190));
+        walls.add(new Wall(0, 0, 1280, 150));
         walls.add(new Wall(0, 540, 580, 400));
         walls.add(new Wall(695, 540, 580, 400));
         walls.add(new Wall(1030, 0, 250, 720));
+        walls.add(new Wall(270,465,105,70));
+        walls.add(new Wall(900,440,100,100));
+        walls.add(new Wall(900,150,100,130));
     }
-//ini
+    //ini
 
     public void movePlayer() {
         if (!isPaused) {
@@ -215,7 +218,8 @@ public class Game extends PApplet {
             c++;
 
             //Invis rect
-            fill(255, 0);
+            fill(255, 50);
+//            noStroke();
 
             //Draw Player
             rect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
