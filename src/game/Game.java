@@ -38,6 +38,7 @@ public class Game extends PApplet {
     // Game state variables
     boolean isPaused = false;
     private List<Wall> walls; // List of walls
+    private List<Wall> warps;
 
     int c = 0;
     int indikator = 0;
@@ -73,14 +74,20 @@ public class Game extends PApplet {
 
         //generate tembok
         walls = new ArrayList<>();
-        walls.add(new Wall(0, 0, 250, 720));
+        walls.add(new Wall(0, 0, 260, 720));
         walls.add(new Wall(0, 0, 1280, 150));
-        walls.add(new Wall(0, 540, 580, 400));
+        walls.add(new Wall(0, 540, 570, 400));
         walls.add(new Wall(695, 540, 580, 400));
-        walls.add(new Wall(1030, 0, 250, 720));
-        walls.add(new Wall(270,465,105,70));
+        walls.add(new Wall(1005, 0, 270, 720));
+        walls.add(new Wall(270,465,100,70));
         walls.add(new Wall(900,440,100,100));
-        walls.add(new Wall(900,150,100,130));
+        walls.add(new Wall(900,150,100,105));
+        walls.add(new Wall(850,150,40,30));
+        walls.add(new Wall(740,150,40,30));
+
+        //generate warp
+        warps = new ArrayList<>();
+        warps.add(new Wall(590,690,100,50));
     }
     //ini
 
@@ -139,6 +146,15 @@ public class Game extends PApplet {
                 if (playerRect.intersects(wallRect)) {
                     // Collision detected, don't update player's position
                     System.out.println("natap mas");
+                    return;
+                }
+            }
+
+            for (Wall warp : warps){
+                Rectangle warpRect = new Rectangle(warp.getX(), warp.getY(), warp.getWidth(), warp.getHeight());
+                if (playerRect.intersects(warpRect)){
+                    pindahMap();
+                    System.out.println("tunjungan plaza");
                     return;
                 }
             }
@@ -218,8 +234,9 @@ public class Game extends PApplet {
             c++;
 
             //Invis rect
-            fill(255, 50);
-//            noStroke();
+            fill(255, 0);
+            noStroke();
+
 
             //Draw Player
             rect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
@@ -227,6 +244,9 @@ public class Game extends PApplet {
             //Draw Wall
             for (Wall wall : walls) {
                 rect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+            }
+            for (Wall warp : warps) {
+                rect(warp.getX(), warp.getY(), warp.getWidth(), warp.getHeight());
             }
         } else {
             // Display a pause message or screen when the game is paused
