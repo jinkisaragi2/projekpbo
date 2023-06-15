@@ -70,50 +70,74 @@ Rectangle playerBoundary;
 //ini
     public void keyPressed() {
         if (key == 'w') {
-            indikator = 0; up = true; running = true; idle = false;
+            indikator = 0;
+            up = true;
+            running = true;
+            idle = false;
             for (int i = 0; i < 2; i++) {
                 walk_1[i] = loadImage("src/assets/walk/belakang_" + (i+1) + ".png");
             }
             p.setWalk(walk_1);
+            if (p.y - 1 > 100) {
+
+            }
         }
         if (key == 's') {
-            indikator = 1; down = true; running = true; idle = false;
+            indikator = 1;
+            down = true;
+            running = true;
+            idle = false;
             for (int i = 0; i < 2; i++) {
                 walk_1[i] = loadImage("src/assets/walk/depan_" + (i+1) + ".png");
             }
             p.setWalk(walk_1);
+            if (down && p.getY() + p.getHeight() >= HEIGHT) {
+                down = false;
+            }
         }
         if (key == 'a') {
-            indikator = 2; left = true; running = true; idle = false;
+            indikator = 2;
+            left = true;
+            running = true;
+            idle = false;
             for (int i = 0; i < 2; i++) {
                 walk_1[i] = loadImage("src/assets/walk/kiri_" + (i+1) + ".png");
             }
             p.setWalk(walk_1);
+            if (left && p.getX() <= 0) {
+                left = false;
+            }
         }
         if (key == 'd') {
-            indikator = 3; right = true; running = true; idle = false;
+            indikator = 3;
+            right = true;
+            running = true;
+            idle = false;
             for (int i = 0; i < 2; i++) {
                 walk_1[i] = loadImage("src/assets/walk/kanan_" + (i+1) + ".png");
             }
             p.setWalk(walk_1);
+            if (right && p.getX() + p.getWidth() >= WIDTH) {
+                right = false;
+            }
         }
         if (key == 'f') {
             pindahMap();
         }
         
         // Cek kolisi dengan batas peta
-        if (left && p.getX() <= 0) {
-            left = false;
-        }
-        if (right && p.getX() + p.getWidth() >= WIDTH) {
-            right = false;
-        }
-        if (up && p.getY() <= 0) {
-            up = false;
-        }
-        if (down && p.getY() + p.getHeight() >= HEIGHT) {
-            down = false;
-        }
+//        if (left && p.getX() <= 0) {
+//            left = false;
+//        }
+//        if (right && p.getX() + p.getWidth() >= WIDTH) {
+//            right = false;
+//        }
+//        if (up && p.getY() <= 0) {
+//            up = false;
+//        }
+//        if (down && p.getY() + p.getHeight() >= HEIGHT) {
+//            down = false;
+//        }
     }
     public void keyReleased() {
         running = attacking_1 = false;

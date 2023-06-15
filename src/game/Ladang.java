@@ -55,7 +55,7 @@ public class Ladang extends PApplet {
 
         ladang = loadImage("src/assets/background/background_2.png");
         p = new Player(425,30);
-        e = new Enemy(800,200);
+//        e = new Enemy(800,200);
         //player
         idle_1 = new PImage[4];
         walk_1 = new PImage[2];

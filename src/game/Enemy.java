@@ -3,7 +3,7 @@ package game;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Enemy {
+public abstract class Enemy {
     public PImage idle;
 
     public int x, y;
