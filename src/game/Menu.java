@@ -21,6 +21,11 @@ public class Menu extends PApplet {
     boolean buttonPressed;
     boolean exitButtonPressed; // New button state
 
+    PImage loadButtonImg;
+    int loadButtonX;
+    int loadButtonY;
+    boolean loadButtonPressed;
+
     public void settings(){
         size(WIDTH, HEIGHT);
     }
@@ -29,13 +34,21 @@ public class Menu extends PApplet {
         backgroundImg = loadImage("src/assets/background/intro.png");
         playButtonImg = loadImage("src/assets/sb.png");
         exitButtonImg = loadImage("src/assets/e.png"); // Load the exit button image
+        loadButtonImg = loadImage("src/assets/l.png");
+
         buttonWidth = 200;
         buttonHeight = 50;
         buttonX = (WIDTH - buttonWidth) / 2;
         buttonY = (HEIGHT - buttonHeight) / 2+100;
+        // Set the position of the load button
+        loadButtonX = (WIDTH - buttonWidth) / 2;
+        loadButtonY = (HEIGHT - buttonHeight) / 2+50;
 
         buttonPressed = false;
         exitButtonPressed = false; // Initialize the button state
+
+        loadButtonPressed = false;
+
 
         bgm = new BGMPlayer(music);
         bgm.BGMPlayer();
@@ -60,6 +73,13 @@ public class Menu extends PApplet {
         }
         image(exitButtonImg, buttonX, buttonY + buttonHeight + 20, buttonWidth, buttonHeight);
 
+        if (loadButtonPressed) {
+            tint(255, 0, 0);
+        } else {
+            noTint();
+        }
+        image(loadButtonImg, loadButtonX, loadButtonY, buttonWidth, buttonHeight);
+
     }
 
     public void mousePressed() {
@@ -79,6 +99,12 @@ public class Menu extends PApplet {
             // Perform exit action here
             if (exitButtonPressed) {
                 System.exit(0); // Terminate the program
+            }
+        }if (mouseX >= loadButtonX && mouseX <= loadButtonX + buttonWidth && mouseY >= loadButtonY && mouseY <= loadButtonY + buttonHeight) {
+            loadButtonPressed = true;
+            // Load the game or perform any action here
+            if (loadButtonPressed) {
+                // Code to load the game
             }
         }
     }

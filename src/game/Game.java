@@ -45,6 +45,8 @@ public class Game extends PApplet {
     private List<Wall> walls; // List of walls
     private List<Wall> warps;
 
+    private int playerX; // Player position X
+    private int playerY; // Player position Y
 
     int c = 0;
     int indikator = 0;
@@ -58,6 +60,9 @@ public class Game extends PApplet {
 
         registerMethod("keyPressed", this);
         registerMethod("keyReleased", this);
+        // Initialize the player position
+        playerX = 800;
+        playerY = 200;
 
         rumah = loadImage("src/assets/interior/in3.png");
         p = new Player(800, 200);
@@ -206,6 +211,14 @@ public class Game extends PApplet {
             // Pause or unpause the game when 'p' key is pressed
             isPaused = !isPaused;
         }
+        if (key == 's') {
+            // Save the game when 's' key is pressed
+            saveGame();
+        }
+    }
+    public void saveGame() {
+        // Save the player position and other game data to a file or database
+        // ...
     }
 
     public void keyReleased() {
