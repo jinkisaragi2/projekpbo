@@ -49,6 +49,7 @@ public class Ladang extends PApplet {
     boolean pindah;
     private List<Wall> walls;
     private List<Wall> warps;
+    private List<Battle> battle;
 
     int c = 0;
     int indikator = 0;
@@ -67,7 +68,7 @@ public class Ladang extends PApplet {
 
         ladang = loadImage("src/assets/background/background_2.png");
         p = new Player(425,100);
-        e = new Enemy(800,200);
+        e = new Sayur1(800,200);
         //player
         idle_1 = new PImage[4];
         walk_1 = new PImage[2];
@@ -153,6 +154,7 @@ public class Ladang extends PApplet {
 
             // Check for collision with walls
             Rectangle playerRect = new Rectangle(newPlayerX, newPlayerY, p.getWidth(), p.getHeight());
+
             for (Wall wall : walls){
                 Rectangle wallRect = new Rectangle(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
                 if (pindah == false){
@@ -174,6 +176,16 @@ public class Ladang extends PApplet {
                     }
                 }
             }
+
+//            Rectangle enemyRect = new Rectangle(e.x, e.y, e.getWidth(), e.getHeight());
+//            if (pindah == false){
+//                if(playerRect.intersects(enemyRect)){
+//                    invokeBattle();
+//                    pindah = true;
+//                    return;
+//                }
+//            }
+
             // Update player's position if no collision
             p.setX(newPlayerX);
             p.setY(newPlayerY);
@@ -253,15 +265,15 @@ public class Ladang extends PApplet {
                 e.drawIdle(this, c);
             }
 
-            if(attacking_1){
-                boolean invoke_battle = true;
-                if(invoke_battle&&!inactive){
-                    change();
-                    invokeBattle();
-                    inactive = true;
-                }
-                invoke_battle = false;
-            }
+//            if(attacking_1){
+//                boolean invoke_battle = true;
+//                if(invoke_battle&&!inactive){
+//                    change();
+//                    invokeBattle();
+//                    inactive = true;
+//                }
+//                invoke_battle = false;
+//            }
 
             // Draw other game objects (enemies, obstacles, etc.)
 
@@ -274,6 +286,9 @@ public class Ladang extends PApplet {
 
             //Draw Player
             rect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
+
+            //draw enemy
+            rect(e.x, e.y, e.getWidth(), e.getHeight());
 
             //Draw Wall
 //            for (Wall wall : walls) {
