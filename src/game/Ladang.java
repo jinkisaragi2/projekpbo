@@ -47,6 +47,7 @@ public class Ladang extends PApplet {
     public PImage idle_2;
 
     boolean pindah;
+    private List<Wall> walls;
     private List<Wall> warps;
 
     int c = 0;
@@ -88,6 +89,12 @@ public class Ladang extends PApplet {
         running = false;
         attacking_1 = false;
         attacking_2 = false;
+
+        walls = new ArrayList<>();
+        walls.add(new Wall(0,0,150,720));
+        walls.add(new Wall(0,650,1280,20));
+        walls.add(new Wall(1145,0,80,720));
+        walls.add(new Wall(0,0,1280,60));
 
         warps = new ArrayList<>();
         warps.add(new Wall(425,30,100,50));
@@ -146,7 +153,15 @@ public class Ladang extends PApplet {
 
             // Check for collision with walls
             Rectangle playerRect = new Rectangle(newPlayerX, newPlayerY, p.getWidth(), p.getHeight());
-
+            for (Wall wall : walls){
+                Rectangle wallRect = new Rectangle(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+                if (pindah == false){
+                    if (playerRect.intersects(wallRect)){
+                        System.out.println("natap mas");
+                        return;
+                    }
+                }
+            }
 
             for (Wall warp : warps){
                 Rectangle warpRect = new Rectangle(warp.getX(), warp.getY(), warp.getWidth(), warp.getHeight());

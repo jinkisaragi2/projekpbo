@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class Player {
 
     public PImage[] idle;
-
     public PImage[] walk;
     public PImage[] attack1;
     public PImage[] attack2;

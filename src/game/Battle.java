@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class Battle extends PApplet {
 
+
+    String music = "src/assets/bgm/BattleMusic.wav";
+    public BGMPlayer bgm;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
-
-
     public static final int FPS = 60;
 
     //Assets
-    public  PImage battlebg;
-
+    public PImage battlebg;
     public Player p;
 
     public Enemy e;
@@ -60,6 +60,7 @@ public class Battle extends PApplet {
 
         //ini
         left = right = up = down = false;
+
     }
 
     public void settings(){

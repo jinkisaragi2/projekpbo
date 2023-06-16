@@ -8,10 +8,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
-
 public class Game extends PApplet {
 
     String music = "src/assets/bgm/GameMusic.wav";
@@ -60,11 +56,8 @@ public class Game extends PApplet {
     public void setup() {
         frameRate(FPS);
 
-
         registerMethod("keyPressed", this);
         registerMethod("keyReleased", this);
-        //coll
-//        Rectangle wallBoundary = new Rectangle(wallX, wallY, wallWidth, wallHeight);
 
         rumah = loadImage("src/assets/interior/in3.png");
         p = new Player(800, 200);
@@ -83,7 +76,7 @@ public class Game extends PApplet {
         attacking_1 = false;
         attacking_2 = false;
 
-        //generate tembok
+        //generate wall
         walls = new ArrayList<>();
         walls.add(new Wall(0, 0, 260, 720));
         walls.add(new Wall(0, 0, 1280, 150));
@@ -105,6 +98,11 @@ public class Game extends PApplet {
         bgm = new BGMPlayer(music);
         bgm.BGMPlayer();
         
+=======
+        //music
+        bgm = new BGMPlayer(music);
+        bgm.BGMPlayer();
+>>>>>>> Stashed changes
     }
     //ini
 
