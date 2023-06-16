@@ -2,10 +2,15 @@ package game;
 
 import processing.core.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 public class Game extends PApplet {
 
@@ -42,6 +47,7 @@ public class Game extends PApplet {
     private List<Wall> walls; // List of walls
     private List<Wall> warps;
 
+
     int c = 0;
     int indikator = 0;
 
@@ -51,6 +57,7 @@ public class Game extends PApplet {
 
     public void setup() {
         frameRate(FPS);
+
 
         registerMethod("keyPressed", this);
         registerMethod("keyReleased", this);
@@ -90,6 +97,10 @@ public class Game extends PApplet {
         //generate warp
         warps = new ArrayList<>();
         warps.add(new Wall(590,690,100,50));
+
+
+//musik
+        
     }
     //ini
 
