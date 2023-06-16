@@ -211,7 +211,7 @@ public class Game extends PApplet {
             // Pause or unpause the game when 'p' key is pressed
             isPaused = !isPaused;
         }
-        if (key == 's') {
+        if (key == 'k') {
             // Save the game when 's' key is pressed
             saveGame();
         }
