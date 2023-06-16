@@ -8,6 +8,9 @@ public class Enemy {
 
     public int x, y;
 
+    private int height  = 80;
+    private int width  = 60;
+
     int t = 0;
 
     public Enemy(PImage idle, int x, int y) {
@@ -33,5 +36,21 @@ public class Enemy {
 
     public void setIdle(PImage idle) {
         this.idle = idle;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
     }
 }

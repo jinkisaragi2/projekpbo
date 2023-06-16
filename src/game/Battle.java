@@ -26,12 +26,16 @@ public class Battle extends PApplet {
     boolean running, idle, attacking_1, attacking_2;
     boolean left, right, up, down;
 
+    boolean isPaused;
+
     boolean chooseMove = true;
     boolean isAttacking = false;
     boolean isDefending = false;
     boolean isFleeing = false;
     boolean isUsingItem = false;
     public PImage idle_2;
+
+    int indikator = 0;
 
     public void setUp(){
         frameRate(FPS);
@@ -83,33 +87,33 @@ public class Battle extends PApplet {
         }
     }
 
-    void update(int x, int y, GUIButton b) {
-
-        if ( overRect(b.x, b.y, b.width, b.height) ) {
-            rectOverAttack = true;
-        }
-        else{
-            rectOverAttack = false;
-        }
-        if(overRect((b.x+250), b.y, b.width, b.height)){
-            rectOverDefend = true;
-        }
-        else{
-            rectOverDefend = false;
-        }
-        if(overRect(b.x, (b.y+75), b.width, b.height)){
-            rectOverItems = true;
-        }
-        else{
-            rectOverItems = false;
-        }
-        if(overRect((b.x+250), (b.y+75), b.width, b.height)){
-            rectOverFlee = true;
-        }
-        else{
-            rectOverFlee = false;
-        }
-    }
+//    void update(int x, int y, GUIButton b) {
+//
+//        if ( overRect(b.x, b.y, b.width, b.height) ) {
+//            rectOverAttack = true;
+//        }
+//        else{
+//            rectOverAttack = false;
+//        }
+//        if(overRect((b.x+250), b.y, b.width, b.height)){
+//            rectOverDefend = true;
+//        }
+//        else{
+//            rectOverDefend = false;
+//        }
+//        if(overRect(b.x, (b.y+75), b.width, b.height)){
+//            rectOverItems = true;
+//        }
+//        else{
+//            rectOverItems = false;
+//        }
+//        if(overRect((b.x+250), (b.y+75), b.width, b.height)){
+//            rectOverFlee = true;
+//        }
+//        else{
+//            rectOverFlee = false;
+//        }
+//    }
 
     public void mousePressed(){
         if(rectOverAttack){
@@ -133,64 +137,60 @@ public class Battle extends PApplet {
     int c = 0;
 
     public void draw(){
-        update(mouseX, mouseY, b);
-        background(battlebg);
+        if (!isPaused) {
+            // Update game logic and draw game objects only if the game is not paused
+            background(battlebg);
+            //p.update(left, right, up, down);
 
-        if(chooseMove){
-            p.drawIdle(this, f);
-            e.drawIdle(this, f);
-        }
-        else if(isAttacking){
-            textSize(30);
-            fill(248);
-            text("The Player Attacks..", 120, 450);
-            if(c>85){
-                f = -1;
-                c = 0;
-                e.x = 200;
-                isAttacking = false;
-                chooseMove = true;
-                System.out.println(f+",");
+            // Draw the player
+            if (idle) {
+                p.drawIdle(this, indikator);
+                e.drawIdle(this, c);
+            } else if (running) {
+                p.drawWalk(this, c);
+                e.drawIdle(this, c);
             }
-//            else if(c>70){
-//                p.drawAttack1(this, f, );
-//                f= -1;
-//                System.out.println(c+"");
-//                c++;
+
+//            if(attacking_1){
+//                boolean invoke_battle = true;
+//                if(invoke_battle&&!inactive){
+//                    change();
+//                    invokeBattle();
+//                    inactive = true;
+//                }
+//                invoke_battle = false;
 //            }
-            else{
-                p.x+=10;
-                p.drawWalk(this, f);
-                c++;
-                f= -1;
-            }
+
+            // Draw other game objects (enemies, obstacles, etc.)
+
+            c++;
+
+            //Invis rect
+            fill(255, 0);
+//            noStroke();
+
+
+            //Draw Player
+            rect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
+
+            //draw enemy
+            rect(e.x, e.y, e.getWidth(), e.getHeight());
+
+            //Draw Wall
+//            for (Wall wall : walls) {
+//                rect(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+//            }
+//            for (Wall warp : warps) {
+//                rect(warp.getX(), warp.getY(), warp.getWidth(), warp.getHeight());
+//            }
+        } else {
+            // Display a pause message or screen when the game is paused
+            background(0);  // Black background
+            fill(255);  // White text color
+            textAlign(CENTER, CENTER);
+            textSize(48);
+            text("Game Paused", width / 2, height / 2);
         }
-
-        if(chooseMove){
-            //Draw Attack button
-            fill(255,245,248);
-            stroke(255, 245, 248);
-            rect(b.x,b.y,b.width,b.height);
-
-            //Draw Defend Button
-            fill(255,245,248);
-            stroke(255, 245, 248);
-            rect((b.x+250),b.y,b.width,b.height);
-
-            //Draw Items Button
-            fill(255,245,248);
-            stroke(255, 245, 248);
-            rect(b.x,(b.y+75),b.width,b.height);
-
-            //Draw Flee Button
-            fill(255,245,248);
-            stroke(255, 245, 248);
-            rect((b.x+250),(b.y+75),b.width,b.height);
-        }
-
-        //Draw Enemy
-        e.drawIdle(this, f);
-        f++;
     }
 
 }

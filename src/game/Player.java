@@ -4,7 +4,7 @@ import processing.core.*;
 
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Interface{
 
     public PImage[] idle;
     public PImage[] walk;
@@ -32,11 +32,18 @@ public class Player {
         this.y = y;
     }
 
+    @Override
     public void drawIdle(PApplet app, int f) {
         int t = 0;
         t = f;
         app.image(idle[t], x, y);
     }
+
+//    public void drawIdle(PApplet app, int f) {
+//        int t = 0;
+//        t = f;
+//        app.image(idle[t], x, y);
+//    }
 
     public void drawWalk(PApplet app, int f) {
         if (f == -1) {
@@ -53,7 +60,7 @@ public class Player {
     }
 
     boolean isCollision(Enemy e){
-        //Needs fixing, but will do for the demo.
+
         if (this.x < e.x + 50 &&
                 this.x + 50 > e.x &&
                 this.y < e.y + 50 &&
