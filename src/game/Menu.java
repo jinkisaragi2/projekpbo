@@ -4,6 +4,8 @@ import processing.core.*;
 
 public class Menu extends PApplet {
 
+    String music = "src/assets/bgm/MenuMusic.wav";
+    public BGMPlayer bgm;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
@@ -30,6 +32,9 @@ public class Menu extends PApplet {
         buttonY = (HEIGHT - buttonHeight) / 2+100;
 
         buttonPressed = false;
+
+        bgm = new BGMPlayer(music);
+        bgm.BGMPlayer();
     }
 
     public void draw() {
@@ -54,6 +59,7 @@ public class Menu extends PApplet {
                 String[] args = {"game.Game"};
                 PApplet.runSketch(args, new Game());
                 surface.setVisible(false);
+                this.bgm.stop();
             }
         }
     }

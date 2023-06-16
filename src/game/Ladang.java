@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Ladang extends PApplet {
 
+    String music = "src/assets/bgm/GameMusic.wav";
+    public BGMPlayer bgm;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
@@ -90,6 +92,9 @@ public class Ladang extends PApplet {
         warps = new ArrayList<>();
         warps.add(new Wall(425,30,100,50));
 
+        //music
+        bgm = new BGMPlayer(music);
+        bgm.BGMPlayer();
     }
 
     public void movePlayer() {
@@ -279,6 +284,7 @@ public class Ladang extends PApplet {
 
     public void change(){
         surface.setVisible(false);
+        this.bgm.stop();
     }
 
     public void pindahMap(){
