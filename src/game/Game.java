@@ -97,12 +97,10 @@ public class Game extends PApplet {
         //music
         bgm = new BGMPlayer(music);
         bgm.BGMPlayer();
-        
-=======
+
         //music
         bgm = new BGMPlayer(music);
         bgm.BGMPlayer();
->>>>>>> Stashed changes
     }
     //ini
 
