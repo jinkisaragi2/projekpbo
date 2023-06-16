@@ -100,15 +100,11 @@ public class Game extends PApplet {
         warps = new ArrayList<>();
         warps.add(new Wall(590,690,100,50));
 
-<<<<<<< Updated upstream
 
-//musik
-        
-=======
         //music
         bgm = new BGMPlayer(music);
         bgm.BGMPlayer();
->>>>>>> Stashed changes
+        
     }
     //ini
 
